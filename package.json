@@ -6,8 +6,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "antd": "^5.1.5",
+    "antd-data-table": "^1.0.1",
     "axios": "^1.2.3",
     "csv": "^6.2.5",
+    "csvtojson": "^2.0.10",
+    "fs-extra": "^11.1.0",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

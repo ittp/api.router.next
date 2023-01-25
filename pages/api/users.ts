@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import type { User } from '../../interfaces'
 
+
+
 // Fake users data
 const users: User[] = [{ id: 1 }, { id: 2 }, { id: 3 }]
 // const rooms: User[] = [{ id: 1 }, { id: 2 }, { id: 3 }]

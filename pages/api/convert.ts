@@ -43,6 +43,7 @@ import { listeners } from 'process';
 const path = require('path');
 
 async function converter(data) {
+  console.clear();
   console.log(data);
   // let json = data.split('\n');
 
@@ -57,6 +58,7 @@ async function converter(data) {
   for (let i = 0; i < allTextLines.length; i++) {
     //       // split content based on comma
     let data = allTextLines[i].split(',');
+
     if (data.length === headers.length) {
       let tarr = [];
       for (let j = 0; j < headers.length; j++) {
@@ -64,7 +66,7 @@ async function converter(data) {
       }
 
       //        // log each row to see output
-      console.log(tarr);
+      // console.log(tarr);
       lines.push(tarr);
     }
   }
@@ -79,7 +81,7 @@ async function converter(data) {
   //   return s;
   // });
 
-  return { data: { headers, lines, allTextLines, csv } };
+  return { csv, json: { headers, lines } };
 }
 
 export default async function handler(
@@ -100,7 +102,7 @@ export default async function handler(
   }
 
   if (data.url) {
-    const CSVToJSON = require('csvtojson');
+    // const CSVToJSON = require('csvtojson');
     let fileData = await axios.get(data.url).then(async (response) => {
       let { data } = response;
 
@@ -115,8 +117,8 @@ export default async function handler(
       // console.log(lines);
 
       let json = converter(data);
-      
-      return json;
+      console.log(json);
+      return { response, json };
     });
     // console.log(fileData);
     // let uploadDir = path.resolve('upload');
@@ -129,9 +131,17 @@ export default async function handler(
     // CSVToJSON
 
     // res.status(200).json(data);
+    responseData = { fileData };
   } else {
     responseData = { error: true, message: 'url' };
   }
-  res.status(200).json(responseData);
+
+  let fd = await axios.get(query['url']);
+
+  let lines = fd.data.split(/\r|\n|\r/);
+
+  let headers = lines[0].split(',');
+
+  res.status(200).json(headers);
   // Get data from your database
 }

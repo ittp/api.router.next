@@ -2,11 +2,7 @@ import * as React from 'react';
 import { Row, Col, Layout, ConfigProvider } from 'antd';
 
 const TestView = (data?: []) => {
-  return (
-    <div>
-      <Row>1</Row>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default TestView;

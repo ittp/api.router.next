@@ -12,8 +12,8 @@ export default async function convert(file) {
 
   try {
     if (!filename) throw error('Required: file');
-    // const users = await CSVToJSON().fromFile('users.csv');
-    const users = await CSVToJSON().fromFile(file);
+    const users = await CSVToJSON().fromFile('users.csv');
+    // const users = await CSVToJSON().fromFile(file);
 
     // log the JSON array
     console.log(users);

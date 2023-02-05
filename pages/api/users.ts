@@ -2,7 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import type { User } from '../../interfaces';
 
 // Fake users data
-let N = 1000;
+let N = 100;
+
 let a1 = Array.apply(null, { length: N }).map(Number.call, (i, k) => {
   // console.log(i);
 

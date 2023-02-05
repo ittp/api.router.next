@@ -58,12 +58,13 @@ const columns = [
   },
 ];
 
+
 let LoadingStatus = ({ data }) => {
   let statusText = {
     200: 'Success',
     403: 'Forbidden',
   };
-  
+
   let { error, data, isLoading } = data;
   if (error) return <div>Loading Error</div>;
   if (isLoading) return <div>Loading...</div>;

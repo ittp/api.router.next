@@ -4,7 +4,7 @@ import type { User } from '../../interfaces';
 // Fake users data
 let N = 1000;
 let a1 = Array.apply(null, { length: N }).map(Number.call, (i, k) => {
-  console.log(i);
+  // console.log(i);
 
   return { id: i + 1 };
 });

@@ -5,7 +5,15 @@ import Link from 'next/link';
 import { parser, generator } from 'csv';
 
 import Axios from 'axios';
-import { useEffect } from 'react';
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  useEffect,
+} from 'react';
+
+import { Table } from 'antd';
 
 const fetcher = (url: string) =>
   Axios.request({ url }).then((response) => {
@@ -23,19 +31,22 @@ const fetcher = (url: string) =>
 
 const fetcherF = (url: string) => fetch(url).then((res) => res.json());
 
-const TableData = fetcherF({ url: '' });
+// const TableData = fetcherF({ url: '' });
 
 const dataSource = [
   {
     key: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street',
+    name: 'S1',
+    ping: 32,
+    address: 'S1',
+    host: {
+      name: '8.8.8.8',
+    },
   },
   {
     key: '2',
-    name: 'John',
-    age: 42,
+    name: 'S2',
+    ping: 1,
     address: '10 Downing Street',
   },
 ];
@@ -47,9 +58,18 @@ const columns = [
     key: 'name',
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Hostname',
+    dataIndex: 'host',
+    key: 'host',
+    render: (v: any) => {
+      console.log(v);
+      return <div>1</div>;
+    },
+  },
+  {
+    title: 'Ping',
+    dataIndex: 'ping',
+    key: 'ping',
   },
   {
     title: 'Address',
@@ -58,8 +78,7 @@ const columns = [
   },
 ];
 
-
-let LoadingStatus = ({ data }) => {
+let LoadingStatus = ({ data: any }) => {
   let statusText = {
     200: 'Success',
     403: 'Forbidden',
